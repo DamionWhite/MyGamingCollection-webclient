@@ -23,6 +23,7 @@ module.exports = {
     ],
 
   },
+  devtool: 'cheap-module-source-map',
   plugins: [
     new hwp({ template: path.join(__dirname, '/src/index.html') })
   ]
