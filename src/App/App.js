@@ -6,7 +6,9 @@ import Login from './Login/Login';
 class App extends React.Component {
   render() {
     return (
-      <Login />
+      <div id='App'>
+        <Login />
+      </div>
     );
   }
 }

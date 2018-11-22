@@ -8,6 +8,7 @@ class Login extends React.Component {
       isActiveRegister: false
     };
     this.openRegister = this.openRegister.bind(this);
+    this.closeRegister = this.closeRegister.bind(this);
   }
 
   openRegister() {
@@ -16,8 +17,17 @@ class Login extends React.Component {
     });
   }
 
+  closeRegister() {
+    this.setState({
+      isActiveRegister: false
+    });
+  }
+
   render() {
-    const register = this.state.isActiveRegister ? <Register /> : null;
+    const register =
+      this.state.isActiveRegister ?
+        (<div><button onClick={this.closeRegister}>X</button> <Register /></div>) :
+        null;
 
     return (
       <div>
