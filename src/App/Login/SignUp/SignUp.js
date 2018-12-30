@@ -1,9 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 
-class Register extends React.Component {
-  handleClick() {
-    axios.post('http://localhost:3000/users', {
+class SignUp extends React.Component {
+  signUpUser() {
+    axios.post('http://localhost:3000/users/signup', {
       name: document.getElementsByName('newUserName')[0].value,
       email: document.getElementsByName('newUserEmail')[0].value,
       password: document.getElementsByName('newUserPassword')[0].value
@@ -20,8 +20,9 @@ class Register extends React.Component {
 
   render() {
     return (
-      <div id='register'>
-        <h1>Register</h1>
+      <div id='signUp'>
+        <button onClick={this.props.closeSignUp}>X</button>
+        <h1>Sign Up</h1>
         <input
           type='text'
           name='newUserName'
@@ -47,4 +48,4 @@ class Register extends React.Component {
   }
 }
 
-export default Register;
+export default SignUp;

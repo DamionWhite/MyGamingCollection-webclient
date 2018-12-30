@@ -1,32 +1,32 @@
 import React from 'react';
-import Register from './Register/Register';
+import SignUp from './SignUp/SignUp';
 
 class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isActiveRegister: false
+      isActiveSignUp: false
     };
-    this.openRegister = this.openRegister.bind(this);
-    this.closeRegister = this.closeRegister.bind(this);
+    this.openSignUp = this.openSignUp.bind(this);
+    this.closeSignUp = this.closeSignUp.bind(this);
   }
 
-  openRegister() {
+  openSignUp() {
     this.setState({
-      isActiveRegister: true
+      isActiveSignUp: true
     });
   }
 
-  closeRegister() {
+  closeSignUp() {
     this.setState({
-      isActiveRegister: false
+      isActiveSignUp: false
     });
   }
 
   render() {
-    const register =
-      this.state.isActiveRegister ?
-        (<div><button onClick={this.closeRegister}>X</button> <Register /></div>) :
+    const signUp =
+      this.state.isActiveSignUp ?
+        <SignUp closeSignUp={this.closeSignUp} /> :
         null;
 
     return (
@@ -35,12 +35,12 @@ class Login extends React.Component {
         <input type="text" name="password" placeholder="Password" />
         <button id="loginBtn">Login</button>
         <button
-          id="registerBtn"
-          onClick={this.openRegister}
+          id="signUpBtn"
+          onClick={this.openSignUp}
         >
-          Register
+          Sign Up
         </button>
-        {register}
+        {signUp}
       </div>
     );
   }
