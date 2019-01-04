@@ -4,9 +4,9 @@ import axios from 'axios';
 class SignUp extends React.Component {
   signUpUser() {
     axios.post('http://localhost:3000/users/signup', {
-      name: document.getElementsByName('newUserName')[0].value,
-      email: document.getElementsByName('newUserEmail')[0].value,
-      password: document.getElementsByName('newUserPassword')[0].value
+      userName: document.getElementsByName('newUserName')[0].value,
+      userEmail: document.getElementsByName('newUserEmail')[0].value,
+      userPassword: document.getElementsByName('newUserPassword')[0].value
     })
       .then((response) => {
         // Handle succes
@@ -15,7 +15,7 @@ class SignUp extends React.Component {
       .catch((error) => {
         // Handle error
         console.log(error);
-      })
+      });
   }
 
   render() {
@@ -39,7 +39,7 @@ class SignUp extends React.Component {
           placeholder='Password'
         ></input>
         <button
-          onClick={this.handleClick}
+          onClick={this.signUpUser}
         >
           Create Account
         </button>
