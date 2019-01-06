@@ -9,10 +9,15 @@ class App extends React.Component {
   constructor(props) {
     super(props);
 
+    this.views = {
+      login: 'login',
+      home: 'home',
+    };
+
     this.state = {
       token: null,
       user: null,
-      view: this.views.login
+      view: this.views.login,
     };
 
     this.setToken = this.setToken.bind(this);
@@ -24,76 +29,71 @@ class App extends React.Component {
       const token = sessionStorage.getItem('token');
       //  Get user
       axios.post('http://localhost:3000/users/get_by_token', {
-        token: token
+        token,
       })
-        .then(response => {
+        .then((response) => {
           // Handle success
           console.log('Found Token');
           const { user } = response.data;
           this.setState({
-            user: user,
-            token: token,
-            view: this.views.home
+            user,
+            token,
+            view: this.views.home,
           });
         })
-        .catch(error => {
+        .catch((error) => {
           console.log({ error });
-        })
+        });
     } else {
       this.state.view = this.views.login;
     }
   }
 
-  views = {
-    login: 'login',
-    home: 'home'
-  }
-
   setView(view) {
     this.setState({
-      view: view
+      view,
     });
   }
 
   setUser(user) {
     this.setState({
-      user: user
+      user,
     });
   }
 
   setToken(token) {
     this.setState({
-      token: token
+      token,
     });
     sessionStorage.setItem('token', token);
   }
 
   render() {
-    let view = null;
+    let viewJSX = null;
+    const { view, user } = this.state;
 
     // Set view
-    // VIEW: LOGIN
-    if (this.state.view === this.views.login) {
-      view = (
+    if (view === this.views.login) {
+      // VIEW: LOGIN
+      viewJSX = (
         <Login
           setToken={this.setToken}
           setView={this.setView}
           setUser={this.setUser}
         />
       );
-    }
-    // VIEW: HOME
-    else if (this.state.view === this.views.home) {
-      view = (
+    } else if (view === this.views.home) {
+      // VIEW: HOME
+      viewJSX = (
         <Home
-          user={this.state.user}
+          user={user}
         />
       );
     }
 
     return (
-      <div id='App'>
-        {view}
+      <div id="App">
+        {viewJSX}
       </div>
     );
   }
